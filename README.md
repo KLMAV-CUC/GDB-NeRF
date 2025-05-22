@@ -83,5 +83,5 @@ If you find this code useful for your research, please use the following BibTeX 
 }
 ```
 
-## CitationAcknowledgements
+## Acknowledgements
 Thanks to Haotong Lin and Sida Peng for opening source of their excellent works [ENeRF](https://github.com/zju3dv/enerf/).
