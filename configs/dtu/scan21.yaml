@@ -1,0 +1,22 @@
+parent_cfg: configs/dtu_pretrain.yaml
+exp_name: dtu_ft_scan21
+
+nerf:
+    max_num_samples: 6
+    reweighting: False
+
+train_dataset:
+    scene: scan21
+
+test_dataset:
+    scene: scan21
+
+train:
+    batch_size: 1
+    lr: 5.e-5
+    epoch: 233 # pretrained epoch + 10
+
+test:
+    sampler_meta:
+        input_views_num: [4]
+
