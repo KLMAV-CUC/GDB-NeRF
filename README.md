@@ -2,8 +2,8 @@
 
 Official PyTorch implementation of the paper:
 
-> [Depth-Guided Bundle Sampling for Efficient Generalizable Neural Radiance Field Reconstruction]
-> Li Fang, Hao Zhu, Longlong Chen, Fei Hu, Long Ye, and Zhan Ma
+> [Depth-Guided Bundle Sampling for Efficient Generalizable Neural Radiance Field Reconstruction](Coming soon!) \
+> Li Fang, Hao Zhu, Longlong Chen, Fei Hu, Long Ye, and Zhan Ma \
 > CVPR 2025
 
 ## Installation
