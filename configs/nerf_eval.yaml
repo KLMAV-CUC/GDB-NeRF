@@ -1,0 +1,24 @@
+parent_cfg: configs/dtu_pretrain.yaml
+
+train_dataset_module: datasets.dataloader.nerf
+test_dataset_module: datasets.dataloader.nerf
+
+mvs:
+    num_depth: [64, 8]
+
+nerf:
+    max_num_samples: 6
+    is_adaptive: True
+    reweighting: True
+
+train_dataset:
+    data_root: 'nerf_synthetic' #
+    split: 'train'
+
+test_dataset:
+    data_root: 'nerf_synthetic' #
+    split: 'test'
+
+test:
+    sampler_meta:
+        input_views_num: [3]

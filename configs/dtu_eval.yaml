@@ -1,0 +1,13 @@
+parent_cfg: configs/dtu_pretrain.yaml
+
+mvs:
+    num_depth: [64, 8]
+
+nerf:
+    max_num_samples: 3
+    is_adaptive: True
+    reweighting: False
+
+test:
+    sampler_meta:
+        input_views_num: [3]

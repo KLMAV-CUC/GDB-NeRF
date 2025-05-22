@@ -1,0 +1,90 @@
+task: gdb_nerf
+gpus: [0, 1, 2, 3]
+exp_name: 'dtu_pretrain'
+
+# module
+train_dataset_module: datasets.dataloader.dtu
+test_dataset_module: datasets.dataloader.dtu
+network_module: networks.gdb_nerf.network
+loss_module: train.losses.gdb_nerf
+evaluator_module: evaluators.gdb_nerf
+visualizer_module: visualizers.gdb_nerf
+
+save_result: False
+eval_lpips: True
+
+# task config
+fpn:
+    base_channels: 8
+    feat_dims: [32, 16, 8]  # feature dimension at each level of the feature maps from FPN
+    feat_scales: [0.25, 0.5, 1.]  # the scale of feature maps at each level of the feature maps from FPN
+
+mvs:
+    vol_levels: [0, 1]  # [0, 0] for 4*4, which level of the feature maps to use for constructing the cost volume at each stage
+    vol_scales: [0.125, 0.5]  # [0.125, 0.25] for 4*4, the scale of cost volume at each stage
+    ci_scales: [1., 1.]  # the scale of confidence interval at each stage
+    voxel_dim: 8  # feature dimension of the 3D feature volumes
+    num_depth: [64, 8]  # number of depth hypotheses at each stage
+    inv_depth: [True, False]  # whether to use inverse depth for the cost volume at each stage
+    num_samples: [8]  # number of samples along rays of NeRFs for training depth estimation network
+    loss_weight: [0.05]  # weight of the depth loss at each stage
+
+nerf:
+    bundle_size: 2  # 4 for 4*4
+    global_num_depth: 64  # define the minimum inter-sample spacing as: min_sample_interval = (far - near) / global_num_depth
+    max_num_samples: 6  # maximum number of samples along rays
+    max_mipmap_level: 3
+    nerf_hidden_dims: 64
+    chunk_size: 1000000
+    is_adaptive: False
+    viewdir_agg: True
+    dec_layers: 3  # number of layers of the decoder at each level
+    reweighting: False
+
+train_dataset:
+    data_root: 'dtu' #
+    ann_file: 'data/mvsnerf/dtu_train_all.txt'
+    split: 'train'
+
+test_dataset:
+    data_root: 'dtu' #
+    ann_file: 'data/mvsnerf/dtu_val_all.txt'
+    split: 'test'
+
+train:
+    pretrain: 'pretrained'
+    optim: 'adam'
+    batch_size: 4
+    lr: 5.e-4
+    weight_decay: 0.
+    epoch: 300
+    scheduler:
+        type: 'exponential'
+        gamma: 0.5
+        decay_epochs: 50
+    batch_sampler: 'enerf'
+    collator: 'enerf' 
+    sampler_meta:
+        input_views_num: [2, 3, 4] 
+        input_views_prob: [0.1, 0.8, 0.1]
+        render_scale: [1.]
+        scale_prob: [1.]
+    num_workers: 4
+
+test:
+    batch_size: 1
+    batch_sampler: 'enerf'
+    collator: 'enerf' 
+    sampler_meta:
+        input_views_num: [3]
+        input_views_prob: [1.]
+        render_scale: [1.]
+        scale_prob: [1.]
+    eval_depth: False
+    eval_center: False  # only for llff evaluation (same as MVSNeRF: https://github.com/apchenstu/mvsnerf/blob/1fdf6487389d0872dade614b3cea61f7b099406e/renderer.ipynb)
+
+ep_iter: 1000
+save_ep: 1
+eval_ep: 1
+save_latest_ep: 1
+log_interval: 1
