@@ -6,6 +6,8 @@ Official PyTorch implementation of the paper:
 > Li Fang, Hao Zhu, Longlong Chen, Fei Hu, Long Ye, and Zhan Ma \
 > CVPR 2025
 
+GDB-NeRF refers to ENeRF+Ours in the paper. The proposed bundle sampling strategy can be used in other NeRFs.
+
 ## Installation
 Please install the following dependencies first
 - [PyTorch (2.5.1 + cu11.8)](https://pytorch.org/get-started/previous-versions/)
