@@ -1,0 +1,40 @@
+parent_cfg: configs/dtu_pretrain.yaml
+exp_name: llff_ft_horns
+
+train_dataset_module: datasets.dataloader.llff
+test_dataset_module: datasets.dataloader.llff
+
+mvs:
+    num_depth: [36, 8]
+
+nerf:
+    max_num_samples: 6
+    reweighting: False
+
+train_dataset:
+    data_root: 'nerf_llff_data' #
+    split: 'train'
+    scene: horns
+    input_h_w: [640, 960]
+
+test_dataset:
+    data_root: 'nerf_llff_data' #
+    split: 'test'
+    scene: horns
+    input_h_w: [640, 960]
+
+train:
+    batch_size: 1
+    lr: 5.e-5
+    epoch: 233 # pretrained epoch + 10
+    sampler_meta:
+        input_views_num: [3, 4, 5] 
+        input_views_prob: [0.4, 0.6, 0.0]
+
+test:
+    eval_center: True
+    sampler_meta:
+        input_views_num: [4]
+
+save_ep: 1
+eval_ep: 1
