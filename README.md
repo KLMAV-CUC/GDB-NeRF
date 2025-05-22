@@ -75,7 +75,7 @@ python run.py --type evaluate --cfg_file configs/llff_eval.yaml
 If you find this code useful for your research, please use the following BibTeX entry.
 
 ```
-@inproceedings{li2025depth,
+@inproceedings{fang2025depth,
   title={Depth-Guided Bundle Sampling for Efficient Generalizable Neural Radiance Field Reconstruction},
   author={Fang, Li and Zhu, Hao and Chen, Longlong and Hu, Fei and Ye, Long and Ma, Zhan},
   booktitle={CVPR},
