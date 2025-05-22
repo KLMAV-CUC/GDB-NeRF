@@ -63,11 +63,11 @@ python run.py --type evaluate --cfg_file configs/dtu_eval.yaml
 ### Evaluate the pretrained model on LLFF and NeRF datasets
 
 ```
-python run.py --type evaluate --cfg_file configs/enerf/nerf_eval.yaml
+python run.py --type evaluate --cfg_file configs/nerf_eval.yaml
 ```
 
 ```
-python run.py --type evaluate --cfg_file configs/enerf/llff_eval.yaml
+python run.py --type evaluate --cfg_file configs/llff_eval.yaml
 ```
 
 ## Citation
