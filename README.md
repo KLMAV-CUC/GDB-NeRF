@@ -26,7 +26,7 @@ The workspace is the disk directory that stores datasets, training logs, checkpo
 export workspace=$PATH_TO_YOUR_WORKSPACE
 ```
    
-#### 1. Pre-trained model (Coming soon)
+#### 1. Pre-trained model
 
 Download the pretrained model from [dtu_pretrain](https://drive.google.com/drive/folders/1mPbNpBnIYIbC-5wlbGSkx8kXefZMZ4Re?usp=drive_link) (Pretrained on DTU dataset.)
 
@@ -40,7 +40,7 @@ Please refer to [ENeRF](https://github.com/zju3dv/enerf) for the dataset prepara
 ### Training
 Use the following command to train a generalizable model on DTU.
 ```
-python train_net.py --cfg_file configs/dtu_pretrain.yaml test.eval_depth True
+python train_net.py --cfg_file configs/dtu_pretrain.yaml
 ```
 
 ### Fine-tuning
@@ -57,7 +57,7 @@ python train_net.py --cfg_file configs/dtu/scan114.yaml
 
 Use the following command to evaluate the pretrained model on DTU.
 ```
-python run.py --type evaluate --cfg_file configs/dtu_eval.yaml
+python run.py --type evaluate --cfg_file configs/dtu_eval.yaml test.eval_depth True
 ```
 
 **Add the "save_result True" parameter at the end of the command to save the rendering result.**
