@@ -2,7 +2,7 @@
 
 Official PyTorch implementation of the paper:
 
-> [Depth-Guided Bundle Sampling for Efficient Generalizable Neural Radiance Field Reconstruction](Coming soon!) \
+> [Depth-Guided Bundle Sampling for Efficient Generalizable Neural Radiance Field Reconstruction] (Coming soon!) \
 > Li Fang, Hao Zhu, Longlong Chen, Fei Hu, Long Ye, and Zhan Ma \
 > CVPR 2025
 
@@ -26,7 +26,7 @@ export workspace=$PATH_TO_YOUR_WORKSPACE
    
 #### 1. Pre-trained model (Coming soon)
 
-Download the pretrained model from [dtu_pretrain]() (Pretrained on DTU dataset.)
+Download the pretrained model from [dtu_pretrain](https://drive.google.com/drive/folders/1mPbNpBnIYIbC-5wlbGSkx8kXefZMZ4Re?usp=drive_link) (Pretrained on DTU dataset.)
 
 Put it into $workspace/trained_model/gdb_nerf/dtu_pretrain/latest.pth
 
