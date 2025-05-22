@@ -1,0 +1,33 @@
+parent_cfg: configs/dtu_pretrain.yaml
+exp_name: nerf_ft_chair
+
+train_dataset_module: datasets.dataloader.nerf
+test_dataset_module: datasets.dataloader.nerf
+
+mvs:
+    num_depth: [64, 8]
+
+nerf:
+    max_num_samples: 6
+    reweighting: False
+
+train_dataset:
+    data_root: 'nerf_synthetic' #
+    split: 'train'
+    scene: chair
+
+test_dataset:
+    data_root: 'nerf_synthetic' #
+    split: 'test'
+    scene: chair
+
+train:
+    batch_size: 1
+    epoch: 233 # pretrained epoch + 10
+    sampler_meta:
+        input_views_num: [3, 4, 5] 
+        input_views_prob: [0.4, 0.6, 0.0]
+
+test:
+    sampler_meta:
+        input_views_num: [4]
