@@ -132,7 +132,7 @@ class DepthNet(nn.Module):
             src_ints: (torch.Tensor) shape (B, num_views, 3, 3), camera intrinsics at each level.
             tar_exts: (torch.Tensor) shape (B, 4, 4), target extrinsic matrix (w2c).
             tar_ints: (torch.Tensor) shape (B, 3, 3), target camera intrinsics at each level.
-            near_far: (torch.Tensor) shape (B, 2, 1, 1), depth range of the target view.
+            near_far: (torch.Tensor) shape (B, 2), depth range of the target view.
 
         Returns:
             depth_predictions: (List[torch.Tensor]) shape [num_stages * (B, Hi, Wi)], depth predictions at each stage.
