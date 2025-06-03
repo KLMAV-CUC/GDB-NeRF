@@ -144,15 +144,14 @@ class Network(nn.Module):
 
         # Build rays
         self.sampler.build_rays(tar_exts, tar_ints, (H_orig, W_orig), near_far[:, 0], near_far[:, 1])
-
-        # Multi-scale volumetric rendering
+        
+        # Adaptive bundle sampling
         H, W = H_orig // self.b_size, W_orig // self.b_size  # spatial size of the bundle map
         if depth_range.shape[2:] != (H, W):
             depth_range = F.interpolate(depth_range, size=(H, W), mode='bilinear', align_corners=False)
             vol_range = F.interpolate(vol_range, size=(H, W), mode='bilinear', align_corners=False)
             mvs_depth = F.interpolate(mvs_depth.unsqueeze(1), size=(H, W), mode='nearest').squeeze(1)
-        
-        # Adaptive bundle sampling
+            
         rays_xyz, uvd, z_vals, ball_radii, indices, samples_per_batch, samples_per_bundle = \
             self.sampler.sample(depth_range, vol_range, self.b_size, self.max_num_samples, self.inv_depth, self.is_adaptive)
         
